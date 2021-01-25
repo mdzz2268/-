@@ -1,0 +1,17 @@
+#python for excel
+#利用pandas+matplotlib对33列数据做出两两散点图，并保存图片
+
+import pandas as pd
+import matplotlib.pyplot as plt
+plt.rcParams['font.sans-serif'] = ['SimHei']
+data = pd.read_excel(r"C:\Users\zhen yao\Desktop\走航\工作簿1.xlsx", "Sheet2")
+#从data第0列循环到最后一列
+columns_name_list = list(data.columns.values)
+for i in range(1,len(columns_name_list)-1):
+    j = i+1
+    while j < len(columns_name_list):
+        plt.scatter(data[columns_name_list[i]],data[columns_name_list[j]])
+        plt.title(columns_name_list[i]+":"+columns_name_list[j],fontproperties="SimHei")
+        plt.savefig(columns_name_list[i]+columns_name_list[j]+".jpg")
+        plt.cla()
+        j = j+1
